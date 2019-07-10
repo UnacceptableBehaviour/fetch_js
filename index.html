@@ -36,15 +36,26 @@
     document.getElementById('addPost').addEventListener('submit', addPost);
 
     function getText(){
-      // fetch('sample.txt')
-      // .then(function(res){
-      //   return res.text();
-      // })
-      // .then(function(data){
-      //   console.log(data);
-      // });
+       ////fetch('sample.txt')                            // NO WORK
+       //fetch('http://127.0.0.1:8000/static/sample.txt') // WORKS - served with CORS headers!
+       //.then(function(res){
+       //  return res.text();
+       //})
+       //.then(function(data){
+       //  console.log(data);
+       //})
+       //.catch((err) => console.log(err))
+       //// catching error - no idea why we get it though!
 
-      fetch('sample.txt')
+      //For making a request and fetching a resource, use the WindowOrWorkerGlobalScope.fetch()
+      //method. It is implemented in multiple interfaces, specifically Window and
+      //WorkerGlobalScope. This makes it available in pretty much any context you
+      //might want to fetch resources in.
+      // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+      // WindowOrWorkerGlobalScope.fetch()
+      
+      //fetch('sample.txt')
+      fetch('http://127.0.0.1:8000/static/sample.txt')
       .then((res) => res.text())
       .then((data) => {
         document.getElementById('output').innerHTML = data;
@@ -53,9 +64,11 @@
     }
 
     function getUsers(){
-      fetch('users.json')
+      //fetch('users.json')
+      fetch('http://127.0.0.1:8000/static/users.json')
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         let output = '<h2 class="mb-4">Users</h2>';
         data.forEach(function(user){
           output += `
